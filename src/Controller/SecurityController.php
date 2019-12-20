@@ -6,29 +6,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(Request $request)
+    public function login(Request $request, Security $security)
     {
-        $error = "";
-        $lastUsername = "";
+        $username = "";
+        $roles = [];
 
-        print_r($request->getContent());
-        //print_r($request->getMethod());
-        //print_r($_POST['email']);
-        //print_r(file_get_contents("php://input"));
-        //var_dump($request->get('email'));
-        //dump($this->getUser());
+        if ($this->getUser()) {
+            $username = $this->getUser()->getEmail();
+            $roles = $this->getUser()->getRoles();
+        }
 
         return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'username' => $lastUsername,
-            'error' => $error
+            'message' => 'Welcome!',
+            'username' => $username,
+            'roles' => $roles
         ]);
     }
 

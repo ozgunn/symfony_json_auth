@@ -21,7 +21,6 @@ class ExceptionSubscriber implements EventSubscriberInterface
 
     public function onKernelException(ExceptionEvent $event)
     {
-        //dump($event->getThrowable());
         $exception = $event->getThrowable();
 
         $response = new JsonResponse(

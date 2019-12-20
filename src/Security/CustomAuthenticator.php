@@ -33,8 +33,8 @@ class CustomAuthenticator extends AbstractGuardAuthenticator
 
     public function supports(Request $request)
     {
-     //   var_dump($request->get('email'));die;
-        return 'app_login' === $request->attributes->get('_route');
+        return 'app_login' === $request->attributes->get('_route')
+            && $request->isMethod("POST");
     }
 
     public function getCredentials(Request $request)
@@ -46,7 +46,6 @@ class CustomAuthenticator extends AbstractGuardAuthenticator
             'password' => $data['password'],
         ];
 
-        //$request->getSession()
         return $credentials;
     }
 
