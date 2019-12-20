@@ -26,6 +26,8 @@ class CustomerController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
+        //print_r($request->getContent());die;
+
         $firstName = $data['firstName'];
         $lastName = $data['lastName'];
         $email = $data['email'];
