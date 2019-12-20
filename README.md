@@ -1,21 +1,20 @@
 # symfony_json_auth
 
-# 
+## API (Customer Entity) 
 
-# API (Customer Entity) 
-# access_control: ROLE_USER
 CustomerController:
   - /api/add (POST): Ekle
   - /api/list (GET): Listele
   - /api/get/{ID} (GET): Göster
   - /api/delete/{ID} (DELETE): Sil
   
-# Auth (User Entity)
-# Uses CustomAuthenticator
-SecurityController:
+## Auth (User Entity) 
+
+SecurityController & CustomAuthenticator:
   - /login (POST): Login
   - /logout (GET): Logout
   
-# Subscriber
+## Subscriber
+
 ExceptionSubscriber:
   - All exceptions > JsonResponse
